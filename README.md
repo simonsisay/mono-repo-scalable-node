@@ -1,81 +1,62 @@
-# LinkedinAdSpy1
+# Monorepo Boilterplate
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+### **📌 Module Generation **  
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+This script automates creating a **feature module** in the backend, following the **controller → service → repository** structure. Each module includes **basic CRUD boilerplate** for quick development.  
 
-## Finish your remote caching setup
+---
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/R6idVEIRCk)
+## **Usage**  
 
-## Run tasks
+Run the command:  
 
-To run the dev server for your app, use:
-
-```sh
-npx nx serve frontend
+```bash
+npm run generate-module <module-name>
 ```
 
-To create a production bundle:
+Example:  
 
-```sh
-npx nx build frontend
+```bash
+npm run generate-module task
 ```
 
-To see all available targets to run for a project, run:
+This generates:  
 
-```sh
-npx nx show project frontend
+```
+/src/modules/task/
+│── task.route.ts        # Fastify routes
+│── task.controller.ts   # API logic
+│── task.service.ts      # Business logic
+│── task.repository.ts   # Database queries
+│── task.schema.ts       # Zod validation
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## **Options**  
 
-## Add new projects
+- **Force Overwrite:**  
+  ```bash
+  npm run generate-module task --force
+  ```  
+  Overwrites an existing module.  
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+- **Without CRUD (Routing Only):**  
+  ```bash
+  npm run generate-module task --no-crud
+  ```  
+  Generates only the route and controller.  
 
-Use the plugin's generator to create new projects.
+---
 
-To generate a new application, use:
+## **Features**  
 
-```sh
-npx nx g @nx/react:app demo
-```
+- **Auto-Registers in `app.ts`** (no manual imports).  
+- **Prettier Formatting** ensures clean code.  
+- **Includes CRUD Boilerplate** for fast development.  
+- **Follows Modular Project Structure** (Fastify, Drizzle ORM, Zod).  
 
-To generate a new library, use:
+---
 
-```sh
-npx nx g @nx/react:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Keep module names **lowercase** (e.g., `task`, `user`). The script enforces **clean, scalable** backend development.
