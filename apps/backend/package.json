@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "generate-module": "npx tsx src/scripts/generate-module.ts"
+  }
+}
